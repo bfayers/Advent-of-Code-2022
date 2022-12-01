@@ -9,10 +9,10 @@ with open("input.txt") as f:
             continue
         this_elf += int(line)
 
-# Prints elf with most calories
+# Prints elf with most calories (Part 1)
 print(max(elves))
 
-# Find total of top 3 elves
+# Find total of top 3 elves (Part 2)
 sorted_elves = list(reversed(sorted(elves)))
 
 print(sorted_elves[0] + sorted_elves[1] + sorted_elves[2])
