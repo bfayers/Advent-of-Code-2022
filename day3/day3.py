@@ -38,9 +38,8 @@ total = 0
 chunk_size = 3
 for i in range(0, len(data), chunk_size):
     chunk = data[i : i + chunk_size]
-    first = set(chunk[0])
-    second = set(chunk[1])
-    third = set(chunk[2])
+    first, second, third = set(chunk[0]), set(chunk[1]), set(chunk[2])
+
 
     in_all = set.intersection(first, second, third)
     for item in in_all:
