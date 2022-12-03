@@ -26,7 +26,7 @@ for line in data:
     first_half, second_half = set(line[:mid]), set(line[mid:])
 
     # Find items in both compartments
-    in_both = first_half.intersection(second_half)
+    in_both = set.intersection(first_half, second_half)
     for item in in_both:
         # Add up the priorities
         total += get_priority(item)
