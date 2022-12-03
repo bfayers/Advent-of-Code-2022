@@ -1,7 +1,7 @@
 from string import ascii_letters
 
 
-def get_priority(letter):
+def get_priority(letter: str) -> int:
     return ascii_letters.index(letter) + 1
 
 
