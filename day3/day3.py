@@ -20,8 +20,8 @@ total = 0
 # Part 1
 for line in data:
     # Split line in half
-    first_half = set(line[0 : int(len(line) / 2)])
-    second_half = set(line[int(len(line) / 2) :])
+    mid = int(len(line)/2)
+    first_half, second_half = set(line[:mid]), set(line[mid:])
 
     # Find items in both compartments
     in_both = first_half.intersection(second_half)
