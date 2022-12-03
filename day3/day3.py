@@ -1,7 +1,9 @@
-import string
+from string import ascii_letters
 
-priorities = list(string.ascii_lowercase)
-priorities.insert(0, 0)
+
+def get_priority(letter):
+    return ascii_letters.index(letter) + 1
+
 
 # data = """vJrwpWtwJgWrhcsFMMfFFhFp
 # jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
@@ -27,9 +29,7 @@ for line in data:
     in_both = first_half.intersection(second_half)
     for item in in_both:
         # Add up the priorities
-        total += priorities.index(item.lower())
-        if item.isupper():
-            total += 26
+        total += get_priority(item)
 
 print(total)
 
@@ -43,8 +43,6 @@ for i in range(0, len(data), chunk_size):
     in_all = set.intersection(first, second, third)
     for item in in_all:
         # Add up the priorities
-        total += priorities.index(item.lower())
-        if item.isupper():
-            total += 26
+        total += get_priority(item)
 
 print(total)
