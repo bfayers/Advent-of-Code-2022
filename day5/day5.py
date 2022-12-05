@@ -16,6 +16,27 @@ with open("input.txt") as f:
     data = f.read().split("\n")
 data = data[:-1]
 
+
+def move_boxes(stacks, instruction_lines, reverse):
+    for instruction_line in instruction_lines:
+        amount_to_move = int(
+            re.search("(?<=move )(\d+)(?= from)", instruction_line).group(0)
+        )
+        starting_point = (
+            int(re.search("(?<=from )(\d+)(?= to)", instruction_line).group(0)) - 1
+        )
+        ending_point = int(re.search("(?<=to )(\d+)", instruction_line).group(0)) - 1
+
+        if reverse:
+            items_removing = list(reversed(stacks[starting_point][0:amount_to_move]))
+        else:
+            items_removing = stacks[starting_point][0:amount_to_move]
+
+        stacks[ending_point] = items_removing + stacks[ending_point]
+        stacks[starting_point] = stacks[starting_point][amount_to_move:]
+    return stacks
+
+
 stack_lines = []
 instruction_lines = []
 doing_stacks = True
@@ -44,27 +65,6 @@ for stack_line in stack_lines[:-1]:
         pos = stack_line.index(col)
         stacks[pos].append(col)
         stack_line[pos] = ""
-
-
-def move_boxes(stacks, instruction_lines, reverse):
-    for instruction_line in instruction_lines:
-        amount_to_move = int(
-            re.search("(?<=move )(\d+)(?= from)", instruction_line).group(0)
-        )
-        starting_point = (
-            int(re.search("(?<=from )(\d+)(?= to)", instruction_line).group(0)) - 1
-        )
-        ending_point = int(re.search("(?<=to )(\d+)", instruction_line).group(0)) - 1
-
-        if reverse:
-            items_removing = list(reversed(stacks[starting_point][0:amount_to_move]))
-        else:
-            items_removing = stacks[starting_point][0:amount_to_move]
-
-        stacks[ending_point] = items_removing + stacks[ending_point]
-        stacks[starting_point] = stacks[starting_point][amount_to_move:]
-    return stacks
-
 
 p1_stacks = move_boxes(copy.copy(stacks), instruction_lines, True)
 p2_stacks = move_boxes(copy.copy(stacks), instruction_lines, False)
