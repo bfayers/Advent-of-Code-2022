@@ -37,6 +37,12 @@ def move_boxes(stacks: list, instruction_lines: list, reverse: bool) -> list:
     return stacks
 
 
+def replace_multiple_chars(chars: list, input: str, replacement_char: str):
+    for char in chars:
+        input = input.replace(char, replacement_char)
+    return input
+
+
 stack_lines = []
 instruction_lines = []
 doing_stacks = True
@@ -56,7 +62,7 @@ stacks = [[] for i in range(amount_of_stacks)]
 
 for stack_line in stack_lines[:-1]:
     stack_line = [
-        stack_line[i : i + 4].replace("[", "").replace("]", "").replace(" ", "")
+        replace_multiple_chars(["[", "]", " "], stack_line[i : i + 4], "")
         for i in range(0, len(stack_line), 4)
     ]
     for col in stack_line:
