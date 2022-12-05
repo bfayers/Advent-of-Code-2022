@@ -56,7 +56,7 @@ stacks = [[] for i in range(amount_of_stacks)]
 
 for stack_line in stack_lines[:-1]:
     stack_line = [
-        stack_line[i : i + 4].replace("[", "").replace("]", "")
+        stack_line[i : i + 4].replace("[", "").replace("]", "").replace(" ", "")
         for i in range(0, len(stack_line), 4)
     ]
     for col in stack_line:
