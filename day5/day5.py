@@ -17,7 +17,7 @@ with open("input.txt") as f:
 data = data[:-1]
 
 
-def move_boxes(stacks, instruction_lines, reverse):
+def move_boxes(stacks: list, instruction_lines: list, reverse: bool) -> list:
     for instruction_line in instruction_lines:
         amount_to_move = int(
             re.search("(?<=move )(\d+)(?= from)", instruction_line).group(0)
