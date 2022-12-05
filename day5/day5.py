@@ -29,7 +29,7 @@ for line in data:
     else:
         instruction_lines.append(line)
 
-amount_of_stacks = int(stack_lines[-1].split(" ")[-2])
+amount_of_stacks = int(re.findall("\d+", stack_lines[-1])[-1])
 
 stacks = [[] for i in range(amount_of_stacks)]
 
